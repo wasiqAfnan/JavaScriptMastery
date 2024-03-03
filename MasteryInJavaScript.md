@@ -22,6 +22,8 @@
 - Execution context and lexical environment
 - Copy reference values
 - Truthy and falsy
+- Short Cicuiting
+- Nullish Coalescing
 - ForEach, for...in, for...of loops
 - Callbacks (intro)
 - Understanding arrays in JavaScript behind the scenes
