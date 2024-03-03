@@ -1,4 +1,4 @@
-**JavaScript - The Basics:**
+# JavaScript - The Basics:
 - Words and keywords
 - Var, let, const, and differences between them
 - Data types in JavaScript
@@ -14,7 +14,7 @@
 - Arrays and push, pop, shift, and unshift operations
 - Props vs methods
 
-**JavaScript - The GameChanger:**
+# JavaScript - The GameChanger:
 - Windows objects
 - Browser Context API
 - Stack (main and side stacks)
@@ -26,7 +26,7 @@
 - Callbacks (intro)
 - Understanding arrays in JavaScript behind the scenes
 
-**JavaScript - The ASYNC Part:**
+# JavaScript - The ASYNC Part:
 - Synchronous and asynchronous JavaScript
 - Handling async codes behind the scenes using main and side stacks
 - Callbacks (deep dive)
@@ -38,7 +38,7 @@
 - Single and multi-threading execution
 - Throttling
 
-**JavaScript - The OOPS Part:**
+# JavaScript - The OOPS Part:
 - Intro to OOPS
 - New keyword
 - This keyword
