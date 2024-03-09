@@ -7,11 +7,14 @@
 - Loops
 - Functions and arrow functions
 - Parameters and arguments
-- Hoisting
+- Rest and argument keyword in functions
+- Hoisting and TDZ (Temporal Dead Zone)
 - Typecasting and template literals
 - Userinputs via terminal
-- Objects
-- Arrays and push, pop, shift, and unshift operations
+- Objects and functions like keys,values and entries
+- Optional chaining in objects
+- Arrays and Array methods(push, pop, shift, unshift, slice, includes, sort, split and join)
+- map, filter and reduce
 - Props vs methods
 
 # JavaScript - The GameChanger:
@@ -20,11 +23,14 @@
 - Stack (main and side stacks)
 - Heap memory
 - Execution context and lexical environment
-- Copy reference values
+- Copy reference values and spread operator
+- Destructuring array
 - Truthy and falsy
 - Short Cicuiting
 - Nullish Coalescing
 - ForEach, for...in, for...of loops
+- ...rest operator in objects
+- Strings and String methods (charAt, charCodeAt, indexOf, includes, toUpperCase, toLowerCase, substring, trim)
 - Callbacks (intro)
 - Understanding arrays in JavaScript behind the scenes
 
@@ -46,5 +52,6 @@
 - This keyword
 - Objects and classes
 - The 4 principles: Encapsulation, Inheritance, Abstraction, Polymorphism
+- functional borrowing (call, apply and bind)
 - Object compositions
 - Static methods
