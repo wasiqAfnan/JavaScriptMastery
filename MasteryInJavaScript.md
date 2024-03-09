@@ -11,7 +11,7 @@
 - Hoisting and TDZ (Temporal Dead Zone)
 - Typecasting and template literals
 - Userinputs via terminal
-- Objects and functions like keys,values and entries
+- Objects and some basic methods like keys,values and entries
 - Optional chaining in objects
 - Arrays and Array methods(push, pop, shift, unshift, slice, includes, sort, split and join)
 - map, filter and reduce
