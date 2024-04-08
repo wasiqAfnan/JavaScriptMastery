@@ -39,16 +39,24 @@ a -= b;// first compute a - b then assign the result into a
 a *= b;// first compute a * b then assign the result into a
 a /= b;// first compute a / b then assign the result into a
 a %= b;// first compute a % b then assign the result into a
-a **= b;// first compute a** b then assign the result into a
+a **= b;// first compute a ** b then assign the result into a
 
 
 // 4) Logical Operators
 
 // logical and '&&' return true if all condition are true else it will return false
 
-// logical or '||' return false if all conditions are false else return true or we can say if any one of the condition is true the logical or operator will result in true else it will false
+/* 
+logical or '||' return false if all conditions are false else return true or we can 
+say if any one of the condition is true the logical or operator will result in true else
+it will false
+*/
 
-// logical not '!' return false if result is true and return true if result is false. We can say it we alter the current condition. If current condition is true it will alter it to false and If current condition is false it will alter it to true.
+/*
+ logical not '!' return false if result is true and return true if result is false. 
+We can say it we alter the current condition. If current condition is true it will alter 
+it to false and If current condition is false it will alter it to true.
+*/
 
 let b1 = true;
 let b2 = false;
