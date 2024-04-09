@@ -1,19 +1,19 @@
 # JavaScript - The Basics:
-- Words and keywords
-- Var, let, const, and differences between them
-- Data types in JavaScript
-- Operators
-- Conditional statements
-- Loops
-- Functions and arrow functions
-- Parameters and arguments
-- Rest and argument keyword in functions
-- Hoisting and TDZ (Temporal Dead Zone)
-- Typecasting and template literals
-- Userinputs via terminal
-- Objects and some basic methods like keys,values and entries
-- Optional chaining in objects
-- Arrays and Array methods(push, pop, shift, unshift, slice, includes, sort, split and join)
+- Words and keywords ✔
+- Var, let, const, and differences between them ✔
+- Data types in JavaScript ✔
+- Operators ✔
+- Conditional statements ✔
+- Loops ✔
+- Functions and arrow functions ✔
+- Parameters and arguments ✔
+- Rest and argument keyword in functions ✔
+- Hoisting and TDZ (Temporal Dead Zone) ✔
+- Typecasting and template literals ✔
+- Userinputs via terminal ✔
+- Objects and some basic methods like keys,values and entries ✔
+- Optional chaining in objects ✔
+- Arrays and Array methods(push, pop, shift, unshift, slice, includes, sort and join) ✔
 - map, filter and reduce
 - Props vs methods
 
