@@ -14,8 +14,7 @@
 - Objects and some basic methods like keys,values and entries ✔
 - Optional chaining in objects ✔
 - Arrays and Array methods(push, pop, shift, unshift, slice, includes, sort and join) ✔
-- map, filter and reduce
-- Props vs methods
+- map, filter and reduce ✔
 
 # JavaScript - The GameChanger:
 - Windows objects
