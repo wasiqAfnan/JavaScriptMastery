@@ -17,7 +17,7 @@
 - map, filter and reduce ✔
 
 # JavaScript - The GameChanger:
-- Windows objects
+- Window objects
 - Browser Context API
 - Stack (main and side stacks)
 - Heap memory
@@ -54,3 +54,20 @@
 - functional borrowing (call, apply and bind)
 - Object compositions
 - Static methods
+
+# JavaScript - The DOM Part:
+- What is DOM?
+- DOM Structure and Insights
+- Events and Event handling
+- Bubbling and Capturing
+- Creating HTML Page using JS
+- Async and Defer keywords
+
+# JavaScript - Projects
+- Background color changer using button
+- Digital Clock
+- Random password generator
+- Weather App
+- Add friend and remove friend button function as in Instagram
+- Guess the number game
+- Instagram like heart emoji creation 
