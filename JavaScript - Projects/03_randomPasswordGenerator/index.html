@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="childContainer1">
+            <h2>Password Generator</h2>
+            <input type="text" id="passwordBox" placeholder="Generate Password">
+        </div>
+
+        <div class="buttons">
+            <input type="button" value="Generate Password 🔑" id="generatePasswordButton">
+            <button id="copyPasswordButton">Copy Password 📃</button>
+        </div>
+
+        <div class="childContainer2">
+            <input type="range" id="passLength" min="8" max="20" step="1" value="10">
+            <input type="text" id="passLengthText" value="10">
+            <input type="checkbox" id="numberChecked" class="checkbox"><span class="CheckboxText">Numbers</span>
+            <input type="checkbox" id="symbolChecked" class="checkbox"><span class="CheckboxText">Symbol</span>
+        </div>
+    </div>
+</body>
+<script src="logic.js"></script>
+</html>
