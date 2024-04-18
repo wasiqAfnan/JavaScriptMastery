@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="searchWrapper">
+            <div class="innerWrapper">
+                <input type="text" id="searchText" placeholder="weather in the city" autocomplete="off" spellcheck="false">
+                <button id="searchButton"><img src="./Assets/magnifier-search-zoom.png" alt="magnifier"></button>
+            </div>
+        </div>
+
+        <div class="weatherDetails" id="weatherDetailsDiv">
+            <img src="" alt="weather image" id="weatherImg">
+            <p class="weatherDescription" id="paraDescription"></p>
+            <p class="degree" id="paraDegree"></p>
+            <p class="city" id="paraCity"></p>
+            <p class="feelsLike" id="paraFeelsLike"></p>
+        </div>
+
+        <div class="extraInfo" id="windHumidity">
+            <div class="humdityDetails">
+                <p id="humidity"></p>
+                <img src="./Assets/humidity_icon_216457.png" alt="humididtimg">
+            </div>
+
+            <div class="windDetails">
+                <p id="windSpeed"></p>
+                <img src="./Assets/007wind_99904.png" alt="windimg">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="logic.js"></script>
+</html>

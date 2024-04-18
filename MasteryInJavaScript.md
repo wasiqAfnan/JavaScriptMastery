@@ -64,10 +64,11 @@
 - Async and Defer keywords
 
 # JavaScript - Projects
-- Background color changer using button
-- Digital Clock
-- Random password generator
-- Weather App
+- Background color changer using button ✔
+- Digital Clock ✔
+- Random password generator ✔
+- Weather App ✔
+- CLI Quizzz ✔
 - Add friend and remove friend button function as in Instagram
 - Guess the number game
-- Instagram like heart emoji creation 
+- Instagram like heart emoji creation

@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Mukta", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.container {
+    background: linear-gradient(45deg, rgb(91, 126, 231), rgb(227, 173, 227));
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* gap:2rem; */
+    /* border: 1px solid blue; */
+}
+
+.searchWrapper {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.innerWrapper {
+    width: 50%;
+    border: 3px solid rgb(239, 237, 173);
+    border-radius: 15px;
+    padding: 10px 5px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerWrapper input {
+    width: 90%;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    padding: .5rem;
+    background: transparent;
+    color: snow;
+}
+
+.searchWrapper button {
+    background: transparent;
+    /* border: 1px solid black; */
+    border: none;
+    outline: none;
+    /* border-radius: 20%; */
+}
+
+.searchWrapper button:hover {
+    background-color: rgb(207, 224, 165);
+    border-radius: 10%;
+}
+
+.searchWrapper button img {
+    width: 40px;
+    height: 40px;
+}
+
+.weatherDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap:.3rem; */
+    opacity: 0;
+    transition: opacity ease-in-out .5s;
+}
+
+.weatherDetails img {
+    width: 8rem;
+    height: 8rem;
+    /* border: 1px solid blue; */
+}
+
+.weatherDescription {
+    font-size: 3rem;
+    color: rgb(191, 247, 79);
+}
+
+.degree {
+    font-size: 4rem;
+    color: crimson;
+}
+
+.city {
+    font-size: 2.5rem;
+    color: bisque;
+}
+
+.feelsLike {
+    font-size: 1.5rem;
+    color: bisque;
+}
+
+.extraInfo {
+    width: 35%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity:0;
+    transition: opacity ease-in-out .5s;
+}
+
+.humdityDetails,
+.windDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem
+}
+
+.humdityDetails img {
+    width: 70px;
+    height: 70px;
+}
+
+.humdityDetails p, .windDetails p{
+    font-size: 2.5rem;
+    color: whitesmoke;
+}
+
+span{
+    font-size: 1.7rem;
+    color: rgb(227, 198, 204);
+}
+
+.windDetails img {
+    width: 70px;
+    height: 70px;
+}
