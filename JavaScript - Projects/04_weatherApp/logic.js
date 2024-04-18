@@ -1,4 +1,4 @@
-const KEY = "3a1bcb1a8a0f7d301dea608dfc3e3cb9";
+const KEY = "";
 let city = "";
 
 const weatherDetailsDiv = document.querySelector('#weatherDetailsDiv');
