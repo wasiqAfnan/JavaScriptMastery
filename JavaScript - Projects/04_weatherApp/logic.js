@@ -1,4 +1,4 @@
-const KEY = "";
+const KEY = "YOURAPIKEY";
 let city = "";
 
 const weatherDetailsDiv = document.querySelector('#weatherDetailsDiv');
