@@ -1,4 +1,4 @@
-# JavaScript - The Basics:
+# JavaScript - The Basics
 - Words and keywords ✔
 - Var, let, const, and differences between them ✔
 - Data types in JavaScript ✔
@@ -16,7 +16,7 @@
 - Arrays and Array methods(push, pop, shift, unshift, slice, includes, sort and join) ✔
 - map, filter and reduce ✔
 
-# JavaScript - The GameChanger:
+# JavaScript - The GameChanger
 - Window objects
 - Browser Context API
 - Stack (main and side stacks)
@@ -33,7 +33,7 @@
 - Callbacks (intro)
 - Understanding arrays in JavaScript behind the scenes
 
-# JavaScript - The ASYNC Part:
+# JavaScript - The ASYNC Part
 - Synchronous and asynchronous JavaScript
 - Handling async codes behind the scenes using main and side stacks
 - Callbacks (deep dive)
