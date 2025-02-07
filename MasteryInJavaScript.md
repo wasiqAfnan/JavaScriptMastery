@@ -18,7 +18,6 @@
 
 # JavaScript - The GameChanger
 - Window objects
-- Browser Context API
 - Stack (main and side stacks)
 - Heap memory
 - Execution context and lexical environment

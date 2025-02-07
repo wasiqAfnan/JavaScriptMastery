@@ -5,7 +5,8 @@ window.alert("Welcome to the JavaScript Tutorial!");
 let userResponse = window.confirm("Do you want to proceed?");
 if (userResponse) {
     console.log("User clicked OK");
-} else {
+}
+else {
     console.log("User clicked Cancel");
 }
 
