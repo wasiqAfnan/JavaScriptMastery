@@ -17,8 +17,8 @@
 - map, filter and reduce ✔
 
 # JavaScript - The GameChanger
-- Window objects
-- Stack (main and side stacks)
+- Window objects ✔
+- Stack (main and side stacks) ✔
 - Heap memory
 - Execution context and lexical environment
 - Copy reference values and spread operator
