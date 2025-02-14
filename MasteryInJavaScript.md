@@ -19,8 +19,8 @@
 # JavaScript - The GameChanger
 - Window objects ✔
 - Stack (main and side stacks) ✔
-- Heap memory
-- Execution context and lexical environment
+- Heap memory ✔
+- Execution context and lexical environment ✔
 - Copy reference values and spread operator
 - Destructuring array
 - Truthy and falsy
