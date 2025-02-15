@@ -21,7 +21,7 @@
 - Stack (main and side stacks) ✔
 - Heap memory ✔
 - Execution context and lexical environment ✔
-- Copy reference values and spread operator
+- Deep copy, Shallow copy and spread operator ✔
 - Destructuring array
 - Truthy and falsy
 - Short Cicuiting
