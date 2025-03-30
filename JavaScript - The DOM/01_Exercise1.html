@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Fun</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1,
+        h2 {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: white;
+            color: black;
+            padding: 8px 12px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        ul li{
+            list-style-type: none;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+        .highlight {
+            color: yellow;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript DOM Fun Examples</h1>
+
+    <!-- EX1: Accessing DOM Elements -->
+    <h2>Accessing DOM Elements</h2>
+    <p id="text">This is a paragraph. Click the button to change me!</p>
+    <button id="changeText">Change Text</button>
+
+    <!-- EX2: DOM traversing -->
+    <h2>Traversing the DOM</h2>
+    <ul id="cities">
+        <li>New York</li>
+        <li>Tokyo</li>
+        <li>Paris</li>
+        <li>London</li>
+    </ul>
+    <button id="highlightFirstCity">Highlight First City</button>
+
+    <!-- EX3: Manipulating DOM Elements -->
+    <h2>Manipulating DOM Elements</h2>
+    <div id="order">Order: <span id="coffeType">Latte</span></div>
+    <button id="changeorder">Change Order to Espresso</button>
+
+    <!-- EX4: Creating and Inserting Elements -->
+    <h2>Creating and Inserting Elements</h2>
+    <button>Add a New Item to the Shopping List</button>
+    <ul id="shoppingList">
+        <li>Bread</li>
+        <li>Milk</li>
+    </ul>
+
+    <h2>Removing DOM Elements</h2>
+    <ul id="tasks">
+        <li>Task 1</li>
+        <li>Task 2</li>
+        <li>Task 3</li>
+    </ul>
+    <button id="removeLastTask">Remove Last Task</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
