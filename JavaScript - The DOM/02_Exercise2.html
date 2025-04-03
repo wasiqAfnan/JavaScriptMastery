@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Example</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Exercise 6: try adding many types of event listeneres like 'click', 'onmouseover', 'db' etc -->
+    <h1>Event Handling in the DOM</h1>
+    <button id="clickMe">Click Me!</button>
+
+    <!-- Exercise 7: click on the element of the list and we should print that particular element in the list 
+    which has been selected instead of log the whole list. -->
+
+    <!-- for example if we select 'Green Tea' then only the li holding green tea will get logged instead of
+    all the li. -->
+    <h1>Event Delegation</h1>
+    <ul id="teaList">
+        <li class="teaItem">Green Tea</li>
+        <li class="teaItem">Black Tea</li>
+        <li class="teaItem">Oolong Tea</li>
+    </ul>
+    <p>Click on any tea to select it!</p>
+
+    <!-- Exercise 8: Show the feedback or populate the feedback entered by the user in 
+    paragraph having id="feedbackDisplay" -->
+    <h1>Form Handling</h1>
+    <form id="feedbackForm">
+        <label>Your Feedback: <input type="text" id="feedbackInput" placeholder="Enter feedback"></label>
+        <button type="submit">Submit Feedback</button>
+    </form>
+    <p id="feedbackDisplay"></p>
+
+    <!-- Exercise 9: The text will change o the event of 'DOMContentLoaded' -->
+    <h1>DOM Content Loaded</h1>
+    <p id="loadingMessage">Waiting for DOM to load...</p>
+
+    <!-- Exercise 10: Toggle Highlight button will add and remove (Toggle) the CSS class -->
+    <h1>CSS Class Manipulation</h1>
+    <p id="text">This text will change color</p>
+    <button id="toggleClass">Toggle Highlight</button>
+    <script src="./02_Exercise2Solved.js"></script>
+</body>
+
+</html>
