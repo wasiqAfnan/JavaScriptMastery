@@ -1,2 +1,4 @@
 node_modules/
 package-lock.json
+NodeJsProjects/A3_httpExpress/node_modules
+NodeJsProjects/A3_httpExpress/package-lock.json
