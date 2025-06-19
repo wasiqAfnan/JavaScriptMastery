@@ -1,8 +1,8 @@
-Problem Statement
-Create a Node.js application using the fs module that simulates basic data handling in a JSON file. The file (data.json) will act like a simple in-memory database storing an array of objects (like an API data structure).
+### Problem Statement
+    Create a Node.js application using the fs module that simulates basic data handling in a JSON file. The file (data.json) will act like a simple in-memory database storing an array of objects (like an API data structure).
 
-Core Functionalities
-You must implement the following features using synchronous methods from the fs module (fs.promises recommended):
+### Core Functionalities
+    You must implement the following features using synchronous methods from the fs module (fs.promises recommended):
 
 1. Add a New Object to the File
 
@@ -26,17 +26,18 @@ You must implement the following features using synchronous methods from the fs 
 
     After clearing, the file should contain an empty array ([]).
 
-✅ Functional Requirements
+### Functional Requirements
     File Format: The file data.json must store an array of JSON objects.
     Example:
         [
             { "id": 1, "name": "Alice", "role": "Admin" },
             { "id": 2, "name": "Bob", "role": "User" }
         ]
-Usage Instructions
+
+### Usage Instructions
     The app must be executable via command-line like:
-        node app.js add 1 Alice Admin
-        node app.js list
-        node app.js clear
+        node index.js write Alice Admin
+        node index.js read
+        node index.js delete Alice
 
 
