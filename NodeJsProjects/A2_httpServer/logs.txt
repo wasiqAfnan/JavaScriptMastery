@@ -1,0 +1,2 @@
+[Thu, 19 Jun 2025 08:42:41 GMT] GET -> /
+[Thu, 19 Jun 2025 08:42:52 GMT] GET -> /about
