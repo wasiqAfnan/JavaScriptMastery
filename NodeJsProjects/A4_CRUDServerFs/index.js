@@ -80,5 +80,27 @@ app.route('/api/users')
             }
         })
 
+app.route('/api/users/:id')
+    .get((req, res) => {
+        let id = Number(req.params.id);
+        let user = userData.find((user) => user.id === id);
+        !user ? res.status(404).json({ message: "user not found" }) : res.status(200).json(user);
+    })
+    .delete((req, res) => {
+        let id = Number(req.params.id);
+        // finding index of the id that has been provided
+        let index = userData.findIndex((user) => user.id === id);
+        if (index != -1) {
+            // spliced the data according to index
+            userData.splice(index, 1);
+            fs.writeFile(path, JSON.stringify(userData), (err) => err ? console.log(err) : "");
+            res.status(200).json({ message: `user deleted successfully with id ${id}`})
+        }
+        else {
+            res.status(404).json({ message: "user not found" })
+        }
+    })
+    .patch((req, res) => {
 
+    })
 app.listen(8000, () => { console.log("Server Started") });
