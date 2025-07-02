@@ -1,9 +1,11 @@
 const express = require('express');
-const fs = require('fs')
+const fs = require('fs');
+
 let userData = require('./data.json');
-const path = "data.json"
-const app = express();
+const path = "data.json";
 let max = -1;
+
+const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 /*
@@ -94,13 +96,29 @@ app.route('/api/users/:id')
             // spliced the data according to index
             userData.splice(index, 1);
             fs.writeFile(path, JSON.stringify(userData), (err) => err ? console.log(err) : "");
-            res.status(200).json({ message: `user deleted successfully with id ${id}`})
+            res.status(200).json({ message: `user deleted successfully with id ${id}` })
         }
         else {
-            res.status(404).json({ message: "user not found" })
+            res.status(404).json({ message: "user not found" });
         }
     })
     .patch((req, res) => {
-
+        let id = Number(req.params.id);
+        // finding index of the id that has been provided
+        let index = userData.findIndex((user) => user.id === id);
+        if (index != -1) {
+            const {name, email, age} = req.body; // extracting update info from req.body
+            const updateData = {...userData[index]}; // copying old data to be updated
+            if (name != undefined) updateData.name = name; // updating name if passed by user
+            if (email != undefined) updateData.email = email; // updating mail if passed by user
+            if (age != undefined) updateData.age = age; // updating age if passed by user
+            userData[index] = updateData; // updating in actual json
+            // writing to file
+            fs.writeFile(path, JSON.stringify(userData), (err) => err ? console.log(err) : "");
+            res.status(200).json({ message: "successful", updatedInfo: updateData });
+        }
+        else {
+            res.status(404).json({ message: "user not found" });
+        }
     })
 app.listen(8000, () => { console.log("Server Started") });
