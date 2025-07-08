@@ -1,9 +1,9 @@
-const express = require('express');
-require('dotenv').config();
-const {connectDB} = require('./configs/connection');
-const {routes} = require('./routes/userRoutes');
+import dotenv from 'dotenv';
+import express from 'express';
+import {connectDB} from './configs/connection.js'
+import {routes} from './routes/userRoutes.js'
 
-
+dotenv.config();
 const app = express();
 
 // middleware to handle json data parsed by req.bidy

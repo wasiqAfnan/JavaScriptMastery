@@ -1,4 +1,4 @@
-const { Users } = require('../models/usermodels');
+import {Users} from '../models/usermodels.js'
 
 const handleGetAllUsers = async (req, res) => {
     let userData = await Users.find();
@@ -49,7 +49,7 @@ const handleCreateNewUser = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
     handleGetAllUsers,
     handleCreateNewUser,
     handleGetUserById,
