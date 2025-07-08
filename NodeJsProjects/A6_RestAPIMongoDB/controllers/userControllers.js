@@ -1,4 +1,4 @@
-import {Users} from '../models/usermodels.js'
+import { Users } from '../models/usermodels.js'
 
 const handleGetAllUsers = async (req, res) => {
     let userData = await Users.find();
@@ -10,6 +10,7 @@ const handleGetUserById = async (req, res) => {
     const user = await Users.findById(id);
     user ? res.status(200).json(user) : res.status(404).json({ message: "No user Found" })
 }
+
 const handleUpdateUserById = async (req, res) => {
     const id = req.params.id;
     const { name, email, age } = req.body;
