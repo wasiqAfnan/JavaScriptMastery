@@ -1,13 +1,19 @@
 import env from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
-import mongoose from "mongoose";
+import {connectDb} from "./src/db/config.js";
 
 const app = express();
 env.config();
 
 app.use(express.json());
 app.use(cookieParser());
+
+connectDb(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) =>
+    err ? console.log("Error Occured While Connecting to DB", err) : ""
+  );
 
 // app.use('/api/auth', authRoutes);
 
