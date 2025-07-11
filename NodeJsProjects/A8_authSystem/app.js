@@ -2,6 +2,7 @@ import env from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import {connectDb} from "./src/db/config.js";
+import authRoutes from "./src/routes/auth.routes.js"
 
 const app = express();
 env.config();
@@ -15,7 +16,7 @@ connectDb(process.env.MONGO_URI)
     err ? console.log("Error Occured While Connecting to DB", err) : ""
   );
 
-// app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get("/api/dashboard", (req, res) => {
   res.status(200).json({ message: "This is protected routes" });
