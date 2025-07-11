@@ -34,7 +34,6 @@ export const handleRegister = async (req, res) => {
             uEmail: email,
             uPass: hashedPw,
         });
-        console.log(user);
 
         // send response
         return res.status(201).json({
@@ -69,7 +68,6 @@ export const handleLogin = async (req, res) => {
         }
         // validate if user exists
         let user = await User.findOne({ uEmail: email });
-        console.log(user);
 
         if (!user) {
             return res.status(400).json({
@@ -78,7 +76,7 @@ export const handleLogin = async (req, res) => {
             });
         }
         // compare pw hashed
-        const matchedPw = bcrypt.compare(password, user.uPass);
+        const matchedPw = await bcrypt.compare(password, user.uPass);
         if (!matchedPw) {
             return res.status(400).json({ message: "Password is invalid" });
         }
@@ -90,7 +88,6 @@ export const handleLogin = async (req, res) => {
                 expiresIn: "1d",
             }
         );
-        console.log("Jwt Token: ", token);
 
         // send cookie and response
         return res
