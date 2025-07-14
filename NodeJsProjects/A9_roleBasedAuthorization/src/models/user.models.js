@@ -6,20 +6,20 @@ const userSchema = new mongoose.Schema(
     {
         uName: {
             type: String,
-            required: [true, "Name is required"],
+            required: [true, "Name is require"],
             unique: true,
             lowercase: true,
             trim: true,
         },
         uEmail: {
             type: String,
-            required: [true, "Email is required"],
+            required: [true, "Email is require"],
             unique: true,
             lowercase: true,
         },
         uPass: {
             type: String,
-            require: [true, "Password is required"],
+            require: [true, "Password is require"],
         },
         uRole: {
             type: String,
@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("uPass")) {
@@ -38,6 +37,10 @@ userSchema.pre("save", async function (next) {
     }
 
     this.uPass = await bcrypt.hash(this.uPass, 10);
+    console.log("Done hashing");
+    
 });
+
+const User = mongoose.model("User", userSchema);
 
 export default User;
