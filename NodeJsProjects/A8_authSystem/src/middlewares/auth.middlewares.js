@@ -14,9 +14,7 @@ export const authMiddleware = async (req, res, next) => {
         // decode token
         const payload = jwt.verify(token, process.env.JWT_SECRET);
         // finding user on db based on decoded token data
-        const user = await User.findOne({ _id: payload.id }).select(
-            "uName uEmail _id"
-        );
+        const user = await User.findOne({ _id: payload.id })
         // validate user
         if (!user) {
             return res.status(403).json({

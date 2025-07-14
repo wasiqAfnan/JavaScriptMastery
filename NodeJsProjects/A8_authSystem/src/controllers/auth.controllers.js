@@ -20,7 +20,7 @@ export const handleRegister = async (req, res) => {
         }
 
         // validate if user exists
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ uEmail: email });
         if (user) {
             return res
                 .status(400)
@@ -42,17 +42,6 @@ export const handleRegister = async (req, res) => {
         });
     } catch (error) {
         console.log("Some Error Occured: ", error);
-        // Check for Mongo duplicate error
-        if (error.code === 11000) {
-            return res.status(400).json({
-                message: "User already exists with this email",
-            });
-        }
-
-        return res.status(500).json({
-            message: "Internal server error",
-            error: error.message,
-        });
     }
 };
 
@@ -91,7 +80,7 @@ export const handleLogin = async (req, res) => {
 
         // send cookie and response
         return res
-            .status(201)
+            .status(200)
             .cookie("token", token, {
                 httpOnly: true,
                 maxAge: 24 * 60 * 60 * 1000, // 1 day
