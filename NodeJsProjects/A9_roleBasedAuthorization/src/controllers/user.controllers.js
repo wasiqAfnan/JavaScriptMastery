@@ -5,7 +5,7 @@ import User from "../models/user.models.js";
 export const handleRegister = async (req, res) => {
     try {
         // get name, email and pw from body
-        const { name, email, password, role } = req.body;
+        const { name, email, password } = req.body;
         // validate
         if (!(name && email && password)) {
             return res
@@ -20,16 +20,14 @@ export const handleRegister = async (req, res) => {
                 .status(400)
                 .json({ message: "User already exists with this email" });
         }
-        // pw hashed
-        const hashedPw = await bcrypt.hash(password, 10);
+
         // save to db
         user = new User({
             uName: name,
             uEmail: email,
-            uPass: hashedPw,
+            uPass: password,
         });
 
-        if (role) user.uRole = role;
         const savedUser = await user.save();
         // send response
         return res.status(201).json({

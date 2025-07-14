@@ -32,6 +32,12 @@ const userSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", userSchema);
 
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("uPass")) {
+        return next();
+    }
 
+    this.uPass = await bcrypt.hash(this.uPass, 10);
+});
 
 export default User;
