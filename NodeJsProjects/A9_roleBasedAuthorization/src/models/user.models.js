@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema(
     {
@@ -19,7 +21,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             require: [true, "Password is required"],
         },
-        uRoles: {
+        uRole: {
             type: String,
             enum: ["ADMIN", "USER"],
             default: "USER",
@@ -29,5 +31,7 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", userSchema);
+
+
 
 export default User;

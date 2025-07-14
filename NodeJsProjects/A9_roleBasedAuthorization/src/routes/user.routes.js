@@ -3,7 +3,7 @@ import {
     handleRegister,
     handleLogin,
     handleLogout,
-} from "../controllers/user.controllers";
+} from "../controllers/user.controllers.js";
 
 const authRoutes = express.Router();
 
