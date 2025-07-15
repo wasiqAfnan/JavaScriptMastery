@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/user.routes.js";
+import errorMiddleware from "./middlewares/error.middleware.js"
 
 
 const app = express();
@@ -18,5 +19,8 @@ app.use("/api/user", authRoutes);
 app.all(/./, (req, res) => {
     res.status(404).json({ message: "Invalid Routes" });
 });
+
+// Error handling middleware
+app.use(errorMiddleware);
 
 export default app;

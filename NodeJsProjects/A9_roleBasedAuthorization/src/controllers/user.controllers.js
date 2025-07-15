@@ -3,23 +3,19 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.models.js";
 import { ApiError, ApiResponse } from "../util/index.js";
 
-export const handleRegister = async (req, res) => {
+export const handleRegister = async (req, res, next) => {
     try {
         // get name, email and pw from body
         const { name, email, password } = req.body;
         // validate
         if (!(name && email && password)) {
-            return res
-                .status(400)
-                .json(new ApiError(400 ,"All field must be passed"));
+            throw new ApiError("All field must be passed", 400);
         }
 
         // validate if user exists
         let user = await User.findOne({ uEmail: email });
         if (user) {
-            return res
-                .status(400)
-                .json(new ApiError(400, "User already exists with this email"));
+            throw new ApiError("User already exists with this email", 400);
         }
 
         // save to db
@@ -40,6 +36,7 @@ export const handleRegister = async (req, res) => {
         );
     } catch (error) {
         console.log("Some Error Occured: ", error);
+        next(error);
     }
 };
 export const handleLogin = async (req, res) => {};
