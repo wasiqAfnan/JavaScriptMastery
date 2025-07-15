@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/user.models.js";
+import { ApiError, ApiResponse } from "../util/index.js";
 
 export const handleRegister = async (req, res) => {
     try {
@@ -30,14 +31,13 @@ export const handleRegister = async (req, res) => {
 
         const savedUser = await user.save();
         // send response
-        return res.status(201).json({
-            message: "User has been created successfully.",
-            userData: {
+        return res.status(201).json(
+            new ApiResponse(201, "User Created Successfully", {
                 name: savedUser.uName,
                 email: savedUser.uEmail,
                 role: savedUser.uRole,
-            },
-        });
+            })
+        );
     } catch (error) {
         console.log("Some Error Occured: ", error);
     }
