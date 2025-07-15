@@ -30,7 +30,8 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-
+// it's a pre-defined mongoDB hook that will run automatically when save() 
+// function has been called in user.controllers.js
 userSchema.pre("save", async function (next) {
     if (!this.isModified("uPass")) {
         return next();
