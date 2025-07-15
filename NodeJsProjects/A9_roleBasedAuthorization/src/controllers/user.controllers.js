@@ -11,7 +11,7 @@ export const handleRegister = async (req, res) => {
         if (!(name && email && password)) {
             return res
                 .status(400)
-                .json({ message: "All field must be passed" });
+                .json(new ApiError(400 ,"All field must be passed"));
         }
 
         // validate if user exists
@@ -19,7 +19,7 @@ export const handleRegister = async (req, res) => {
         if (user) {
             return res
                 .status(400)
-                .json({ message: "User already exists with this email" });
+                .json(new ApiError(400, "User already exists with this email"));
         }
 
         // save to db
