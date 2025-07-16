@@ -1,5 +1,5 @@
 class ApiError extends Error {
-    constructor( message = "Operation Failed", statusCode = 500) {
+    constructor(message = "Operation Failed", statusCode = 500) {
         super(message);
         this.statusCode = Number(statusCode);
         this.data = null;
