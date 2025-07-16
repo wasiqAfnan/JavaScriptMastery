@@ -5,8 +5,6 @@ const errorMiddleware = (err, req, res, next) => {
     let { statusCode, message, stack } = err;
 
     if (constants.NODE_ENV === "development") {
-        console.log("ErrorMiddleware: ", err);
-
         // Send error response
         return res.status(statusCode || 500).json({
             statusCode,

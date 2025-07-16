@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema(
         },
         uPass: {
             type: String,
-            require: [true, "Password is require"],
+            require: [true, "Password is required"],
+            select: false, // secure option: don't return password by default
         },
         uRole: {
             type: String,
@@ -30,7 +31,7 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-// it's a pre-defined mongoDB hook that will run automatically when save() 
+// it's a pre-defined mongoDB hook that will run automatically when save()
 // function has been called in user.controllers.js
 userSchema.pre("save", async function (next) {
     if (!this.isModified("uPass")) {
@@ -38,9 +39,11 @@ userSchema.pre("save", async function (next) {
     }
 
     this.uPass = await bcrypt.hash(this.uPass, 10);
-    console.log("Done hashing");
-    
 });
+
+userSchema.methods.isPasswordCorrect = async function (password) {
+    return await bcrypt.compare(password, this.uPass);
+};
 
 const User = mongoose.model("User", userSchema);
 
