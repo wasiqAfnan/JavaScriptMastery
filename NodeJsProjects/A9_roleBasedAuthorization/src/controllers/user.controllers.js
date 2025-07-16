@@ -91,3 +91,9 @@ export const handleLogout = async (req, res) => {
         .status(200)
         .json(new ApiResponse(200, "Logged out successfully"));
 };
+
+export const handleDashboard = (req, res) => {
+    return res
+        .status(200)
+        .json(new ApiResponse(200, `Welcome ${req.user.name}`, req.user));
+};

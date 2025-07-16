@@ -3,12 +3,15 @@ import {
     handleRegister,
     handleLogin,
     handleLogout,
+    handleDashboard,
 } from "../controllers/user.controllers.js";
+import { isLoggedIn } from "../middlewares/user.middlewares.js";
 
-const authRoutes = express.Router();
+const userRoutes = express.Router();
 
-authRoutes.route("/register").post(handleRegister);
-authRoutes.route("/login").post(handleLogin);
-authRoutes.route("/logout").post(handleLogout);
+userRoutes.route("/register").post(handleRegister);
+userRoutes.route("/login").post(handleLogin);
+userRoutes.route("/logout").post(handleLogout);
+userRoutes.route("/dashboard").post(isLoggedIn, handleDashboard);
 
-export default authRoutes;
+export default userRoutes;
