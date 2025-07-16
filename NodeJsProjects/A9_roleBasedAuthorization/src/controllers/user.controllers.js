@@ -45,14 +45,16 @@ export const handleLogin = async (req, res, next) => {
         const { email, password } = req.body;
         // validate
         if (!(email && password)) {
-            throw new ApiError("All field must be passed", 400)
+            throw new ApiError("All field must be passed", 400);
         }
         // validate if user exists
         let user = await User.findOne({ uEmail: email }).select("+uPass");
-        console.log(user);
-        
+
         if (!user) {
-            throw new ApiError("User does not exists with this email or email is invalid", 400)
+            throw new ApiError(
+                "User does not exists with this email or email is invalid",
+                400
+            );
         }
         // compare pw hashed
         const matchedPw = await user.isPasswordCorrect(password);
@@ -60,30 +62,32 @@ export const handleLogin = async (req, res, next) => {
             throw new ApiError("Password is invalid", 400);
         }
         console.log("Password Correct");
-        
-        // token create
-        const token = jwt.sign(
-            { id: user._id, email: user.uEmail },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: "1d",
-            }
-        );
 
-        // send cookie and response
+        // token create
+        const token = await user.generateAccessToken();
+        console.log("token: ", token);
+
+        user.uPass = undefined;
+
+        // send cookie
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 24 * 60 * 60 * 1000, // 1 day
+        });
+
+        // send response
         return res
             .status(200)
-            .cookie("token", token, {
-                httpOnly: true,
-                maxAge: 24 * 60 * 60 * 1000, // 1 day
-            })
-            .json({
-                message:
-                    "You have been authorized successfully. To access dashboard go to /dashboard",
-            });
+            .json(new ApiResponse(200, "Login Successful", user));
     } catch (error) {
         console.log("Some Error Occured: ", error);
         next(error);
     }
 };
-export const handleLogout = async (req, res) => {};
+export const handleLogout = async (req, res) => {
+    res.clearCookie("token");
+    return res
+        .status(200)
+        .json(new ApiResponse(200, "Logged out successfully"));
+};
