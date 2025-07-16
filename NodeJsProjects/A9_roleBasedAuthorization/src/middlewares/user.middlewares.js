@@ -24,6 +24,7 @@ export const isLoggedIn = async (req, res, next) => {
             id: user._id,
             name: user.uName,
             email: user.uEmail,
+            role: user.uRole,
         };
 
         return next();
@@ -32,3 +33,14 @@ export const isLoggedIn = async (req, res, next) => {
         next(error);
     }
 };
+
+export const isAuthorized =
+    (...roles) =>
+    async (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return next(
+                new ApiError("You are not authorized to access this route", 403)
+            );
+        }
+        next();
+    };
