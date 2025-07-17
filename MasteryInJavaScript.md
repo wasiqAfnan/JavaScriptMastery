@@ -71,3 +71,7 @@
 - Add friend and remove friend button function as in Instagram
 - Guess the number game
 - Instagram like heart emoji creation
+
+# JavaScript - NodeJs
+- A well formatted and curated Nodejs Applications ✔
+- Covering Fs,express, mongoose and CRUD API with industry level folder structure ✔
