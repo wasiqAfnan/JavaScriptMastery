@@ -10,6 +10,11 @@ export const handleRegister = async (req, res, next) => {
             throw new ApiError("All field must be passed", 400);
         }
 
+        // check if user have passed empty string in any of the field
+        if ([name, email, password].some((field) => field?.trim() === "")) {
+            throw new ApiError("All field must be passed", 400);
+        }
+
         // validate if user exists
         let user = await User.findOne({ uEmail: email });
         if (user) {
@@ -34,7 +39,7 @@ export const handleRegister = async (req, res, next) => {
         );
     } catch (error) {
         console.log("Some Error Occured: ", error);
-        next(error);
+        throw new ApiError("", 400);
     }
 };
 export const handleLogin = async (req, res, next) => {
@@ -45,6 +50,12 @@ export const handleLogin = async (req, res, next) => {
         if (!(email && password)) {
             throw new ApiError("All field must be passed", 400);
         }
+
+        // check if user have passed empty string in any of the field
+        if ([email, password].some((field) => field?.trim() === "")) {
+            throw new ApiError("All field must be passed", 400);
+        }
+
         // validate if user exists
         let user = await User.findOne({ uEmail: email });
 
