@@ -46,7 +46,7 @@ export const handleLogin = async (req, res, next) => {
             throw new ApiError("All field must be passed", 400);
         }
         // validate if user exists
-        let user = await User.findOne({ uEmail: email }).select("+uPass");
+        let user = await User.findOne({ uEmail: email });
 
         if (!user) {
             throw new ApiError(
@@ -59,13 +59,9 @@ export const handleLogin = async (req, res, next) => {
         if (!matchedPw) {
             throw new ApiError("Password is invalid", 400);
         }
-        console.log("Password Correct");
 
         // token create
         const token = await user.generateAccessToken();
-        console.log("token: ", token);
-
-        user.uPass = undefined;
 
         // send cookie
         res.cookie("token", token, {
