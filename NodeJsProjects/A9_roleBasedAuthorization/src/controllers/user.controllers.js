@@ -39,7 +39,13 @@ export const handleRegister = async (req, res, next) => {
         );
     } catch (error) {
         console.log("Some Error Occured: ", error);
-        throw new ApiError("", 400);
+         // If the error is already an instance of ApiError, pass it to the error handler
+        if (error instanceof ApiError) {
+            return next(error);
+        }
+
+        // For all other errors, send a generic error message
+        return next(new ApiError("Something went wrong during registration", 500));
     }
 };
 export const handleLogin = async (req, res, next) => {
