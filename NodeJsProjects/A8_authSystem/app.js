@@ -21,6 +21,8 @@ connectDb(process.env.MONGO_URI)
 app.use("/api/auth", authRoutes);
 
 // protected route
+// before jumping to the controller function middleware fubction will be executed
+// then only controller function executed
 app.use("/api/dashboard", authMiddleware, dashboardRoutes);
 
 // handling all other incorrect routes
