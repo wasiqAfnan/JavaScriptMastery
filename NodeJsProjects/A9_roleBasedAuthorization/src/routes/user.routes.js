@@ -6,7 +6,7 @@ import {
     handleDashboard,
     handleGetAllUser,
 } from "../controllers/user.controllers.js";
-import { isLoggedIn, isAuthorized } from "../middlewares/user.middlewares.js";
+import { isLoggedIn, isAuthorized } from "../middlewares/auth.middlewares.js";
 
 const userRoutes = express.Router();
 

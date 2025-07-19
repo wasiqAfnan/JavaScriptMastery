@@ -63,7 +63,7 @@ export const handleLogin = async (req, res, next) => {
         }
 
         // validate if user exists
-        let user = await User.findOne({ uEmail: email });
+        let user = await User.findOne({ uEmail: email }).select("+uPass");
 
         if (!user) {
             throw new ApiError(
@@ -77,6 +77,7 @@ export const handleLogin = async (req, res, next) => {
             throw new ApiError("Password is invalid", 400);
         }
 
+        user.uPass = undefined;
         // token create
         const token = await user.generateAccessToken();
 
