@@ -10,17 +10,20 @@ const userSchema = new mongoose.Schema(
             required: [true, "User Name is require"],
             unique: true,
             lowercase: true,
-            trim: true,
         },
         password: {
             type: String,
             require: [true, "Password is required"],
             select: false, // secure option: don't return password by default
         },
+        profile: {
+            name: { type: String },
+            contact: { type: String },
+            address: { type: String },
+        },
         role: {
-            type: String,
-            enum: ["ADMIN", "PATIENT", "DOCTOR", "NURSE"],
-            default: "PATIENT",
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Role",
         },
     },
     { timestamps: true }
@@ -38,7 +41,7 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.isPasswordCorrect = async function (password) {
     console.log(this.password);
-    
+
     return await bcrypt.compare(password, this.password);
 };
 

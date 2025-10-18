@@ -3,6 +3,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.routes.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import healthCheckRoutes from "./routes/healthCheck.routes.js";
 
 const app = express();
 
@@ -12,11 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
 
-app.use("/api/test", userRoutes);
+app.use("/api/test", healthCheckRoutes);
 app.use("/api/user", userRoutes);
-
-// protected route
-// app.use("/api/dashboard", authMiddleware, dashboardRoutes);
 
 // handling all other incorrect routes
 app.all(/./, (req, res) => {
