@@ -104,24 +104,3 @@ export const handleLogout = async (req, res) => {
         .json(new ApiResponse(200, "Logged out successfully"));
 };
 
-export const handleDashboard = (req, res) => {
-    return res
-        .status(200)
-        .json(new ApiResponse(200, `Welcome ${req.user.name}`, req.user));
-};
-
-export const handleGetAllUser = async (req, res) => {
-    const userData = await User.find();
-    if (!userData) {
-        throw new ApiError("Error occured while fetching from DB", 500);
-    }
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                "You are authroized to access this route",
-                userData
-            )
-        );
-};
