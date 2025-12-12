@@ -1,5 +1,6 @@
 import env from "dotenv";
 import express from "express";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import { connectDb } from "./src/db/config.js";
 import authRoutes from "./src/routes/auth.routes.js";
@@ -11,6 +12,12 @@ env.config();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+    cors({
+        origin: process.env.FRONTEND_URL.split(","),
+        credentials: true,
+    })
+);
 
 connectDb(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected"))
