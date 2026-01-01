@@ -9,20 +9,20 @@ dotenv.config();
 
 // These id's and secrets should come from .env file.
 const CLIENT_ID = process.env.CLIENT_ID;
-const CLEINT_SECRET = process.env.CLIENT_SECRET;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
-  CLEINT_SECRET,
+  CLIENT_SECRET,
   REDIRECT_URI
 );
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 async function sendMail() {
   try {
-    const accessToken = await oAuth2Client.getAccessToken();
+    const {token} = await oAuth2Client.getAccessToken();
 
     const transport = nodemailer.createTransport({
       service: 'gmail',
@@ -30,14 +30,14 @@ async function sendMail() {
         type: 'OAuth2',
         user: process.env.AUTHORIZE_MAIL,
         clientId: CLIENT_ID,
-        clientSecret: CLEINT_SECRET,
-        refreshToken: REFRESH_TOKEN,
-        accessToken: accessToken,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,    
+        accessToken: token,
       },
     });
 
     const mailOptions = {
-      from: 'Wasiq <bitebot25@gmail.com>',
+      from: `Wasiq <${process.env.AUTHORIZE_MAIL}>`,
       to: process.env.RECEIVER_MAIL,
       subject: 'Hello from gmail using API',
       text: 'Hello from gmail email using API',
