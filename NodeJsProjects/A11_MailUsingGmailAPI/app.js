@@ -28,7 +28,7 @@ async function sendMail() {
       service: 'gmail',
       auth: {
         type: 'OAuth2',
-        user: 'yours authorised email address',
+        user: process.env.AUTHORIZE_MAIL,
         clientId: CLIENT_ID,
         clientSecret: CLEINT_SECRET,
         refreshToken: REFRESH_TOKEN,
@@ -37,17 +37,17 @@ async function sendMail() {
     });
 
     const mailOptions = {
-      from: 'SENDER NAME <yours authorised email address@gmail.com>',
-      to: 'to email address here',
+      from: 'Wasiq <bitebot25@gmail.com>',
+      to: process.env.RECEIVER_MAIL,
       subject: 'Hello from gmail using API',
       text: 'Hello from gmail email using API',
-      html: '<h1>Hello from gmail email using API</h1>',
+      html: '<h1>Hello from gmail email using API + Nodemailer</h1>',
     };
 
     const result = await transport.sendMail(mailOptions);
     return result;
   } catch (error) {
-    return error;
+    console.log("Error Occured: ", error);
   }
 }
 
