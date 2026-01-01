@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
-import { oAuth2Client } from './smtp.config.js';
+import oAuth2Client from './smtp.config.js';
+import constants from '../constants.js';
 
 export const createTransporter = async () => {
   const { token } = await oAuth2Client.getAccessToken();
@@ -12,10 +13,10 @@ export const createTransporter = async () => {
     service: 'gmail',
     auth: {
       type: 'OAuth2',
-      user: AUTHORIZE_MAIL,
-      clientId: CLIENT_ID,
-      clientSecret: CLIENT_SECRET,
-      refreshToken: REFRESH_TOKEN,
+      user: constants.AUTHORIZE_MAIL,
+      clientId: constants.CLIENT_ID,
+      clientSecret: constants.CLIENT_SECRET,
+      refreshToken: constants.REFRESH_TOKEN,
       accessToken: token,
     },
   });

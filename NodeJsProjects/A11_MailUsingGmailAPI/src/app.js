@@ -1,9 +1,8 @@
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
-import dotenv from "dotenv";
 import express from "express";
 import {handleMail} from "./controllers/handleMail.controller.js";
-dotenv.config();
+
 
 const app = express();
 

@@ -1,11 +1,12 @@
 import { createTransporter } from '../configs/nodemailer.config.js';
+import constants from '../constants.js';
 
 const sendMail = async ({ to, subject, text, html }) => {
   try {
     const transporter = await createTransporter();
-
+    // console.log(constants.AUTHORIZE_MAIL)
     const mailOptions = {
-      from: `Wasiq <${process.env.AUTHORIZE_MAIL}>`,
+      from: `Wasiq <${constants.AUTHORIZE_MAIL}>`,
       to,
       subject,
       text,

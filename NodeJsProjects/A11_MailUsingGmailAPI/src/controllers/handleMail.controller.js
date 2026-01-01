@@ -1,10 +1,11 @@
 import sendMail from '../utils/sendMail.js';
+import constants from '../constants.js';
 
 export const handleMail = async (req, res) => {
   try {
 
     await sendMail({
-      to: process.env.RECEIVER_MAIL,
+      to: constants.RECEIVER_MAIL,
       subject: 'Welcome to BiteBot 🚀',
       text: `Hello User, welcome aboard!`,
       html: `<h2>Hello User👋</h2><p>Welcome to BiteBot!</p>`,
