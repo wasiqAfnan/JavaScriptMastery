@@ -1,26 +1,17 @@
 import sendMail from '../utils/sendMail.js';
-import constants from '../constants.js';
 
 export const handleMail = async (req, res) => {
   try {
+    const { email, name } = req.query;
 
     await sendMail({
-      to: constants.RECEIVER_MAIL,
-      subject: 'Welcome to BiteBot 🚀',
-      text: `Hello User, welcome aboard!`,
-      html: `<h2>Hello User👋</h2><p>Welcome to BiteBot!</p>`,
+      to: email,
+      templateName: 'welcome',
+      data: { name },
     });
 
-    return res.status(200).json({
-      success: true,
-      message: 'Email sent successfully',
-    });
+    res.json({ success: true, message: 'Welcome to bitebot' });
   } catch (error) {
-    console.error('Controller error:', error.message);
-
-    return res.status(500).json({
-      success: false,
-      message: 'Failed to send email',
-    });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
