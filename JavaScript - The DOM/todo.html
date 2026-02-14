@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta viewport="device-width" />
+    <title>Todo App</title>
+  </head>
+
+  <body>
+    <nav>Todo Management System</nav>
+
+    <main>
+
+      <!-- Form -->
+      <form id="todoForm">
+
+        <input type="text" id="task" placeholder="Enter task" />
+
+        <input type="submit" id="submitBtn" value="Add" />
+
+      </form>
+
+      <!-- Table -->
+      <table border="3">
+
+        <thead>
+          <th>Id</th>
+          <th>Task</th>
+          <th>Status</th>
+          <th colspan="2">Action</th>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+
+      </table>
+
+      <br>
+
+      <!-- Filters -->
+
+      <select id="statusFilter">
+        <option value="">All</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+      </select>
+
+      <input type="text" id="search" placeholder="Search task" />
+
+    </main>
+
+  </body>
+
+  <script>
+
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+    const form = document.getElementById("todoForm");
+    const task = document.getElementById("task");
+    const submitBtn = document.getElementById("submitBtn");
+    const tbody = document.getElementById("tbody");
+    const search = document.getElementById("search");
+    const statusFilter = document.getElementById("statusFilter");
+
+    let editIndex = -1;
+
+
+    /* Render Table */
+
+    function renderTable(list = todos) {
+
+      tbody.innerHTML = "";
+
+      list.forEach((todo, index) => {
+
+        let row = `
+          <tr>
+
+            <td>${index + 1}</td>
+
+            <td>${todo.task}</td>
+
+            <td>
+              ${todo.completed ? "Completed" : "Pending"}
+            </td>
+
+            <td>
+              <button onclick="toggleStatus(${index})">
+                Check
+              </button>
+            </td>
+
+            <td>
+              <button onclick="deleteTodo(${index})">
+                Delete
+              </button>
+            </td>
+
+          </tr>
+        `;
+
+        tbody.innerHTML += row;
+
+      });
+
+    }
+
+
+    /* Add / Update */
+
+    form.addEventListener("submit", function (e) {
+
+      e.preventDefault();
+
+      let taskName = task.value.trim();
+
+      if (taskName === "") {
+        alert("Enter task");
+        return;
+      }
+
+      let todo = {
+        task: taskName,
+        completed: false
+      };
+
+
+      if (editIndex === -1) {
+
+        todos.push(todo);
+
+      } else {
+
+        todos[editIndex] = todo;
+        editIndex = -1;
+        submitBtn.value = "Add";
+
+      }
+
+      localStorage.setItem("todos", JSON.stringify(todos));
+
+      form.reset();
+
+      renderTable();
+
+    });
+
+
+    /* Delete */
+
+    function deleteTodo(index) {
+
+      todos.splice(index, 1);
+
+      localStorage.setItem("todos", JSON.stringify(todos));
+
+      renderTable();
+
+    }
+
+
+    /* Toggle Completed / Pending */
+
+    function toggleStatus(index) {
+
+      todos[index].completed = !todos[index].completed;
+
+      localStorage.setItem("todos", JSON.stringify(todos));
+
+      renderTable();
+
+    }
+
+
+    /* Search */
+
+    function searchTodo() {
+
+      let searchTerm = search.value.toLowerCase().trim();
+
+      let filtered = todos.filter((t) => {
+
+        return t.task.toLowerCase().includes(searchTerm);
+
+      });
+
+      renderTable(filtered);
+
+    }
+
+
+    /* Filter by Status */
+
+    function filterByStatus() {
+
+      let status = statusFilter.value;
+
+
+      if (status === "") {
+        renderTable();
+        return;
+      }
+
+
+      let filtered = todos.filter((t) => {
+
+        if (status === "completed") {
+          return t.completed === true;
+        }
+
+        if (status === "pending") {
+          return t.completed === false;
+        }
+
+      });
+
+      renderTable(filtered);
+
+    }
+
+
+    /* Events */
+
+    search.addEventListener("keyup", searchTodo);
+
+    statusFilter.addEventListener("change", filterByStatus);
+
+
+    /* First Load */
+
+    renderTable();
+
+  </script>
+</html>

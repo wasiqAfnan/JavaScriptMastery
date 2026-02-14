@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stopwatch with Milliseconds</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #121212;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #1f1f1f;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    h1 {
+        margin-bottom: 15px;
+    }
+
+    #display {
+        font-size: 32px;
+        margin: 15px 0;
+        letter-spacing: 2px;
+    }
+
+    button {
+        padding: 8px 14px;
+        margin: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .start { background: #4CAF50; color: white; }
+    .stop { background: #f44336; color: white; }
+    .reset { background: #2196F3; color: white; }
+
+    button:hover {
+        opacity: 0.85;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Stopwatch</h1>
+
+    <div id="display">00:00:00:00</div>
+
+    <button class="start" onclick="start()">Start</button>
+    <button class="stop" onclick="stop()">Stop</button>
+    <button class="reset" onclick="reset()">Reset</button>
+
+</div>
+
+<script>
+
+let ms = 0;
+let sec = 0;
+let min = 0;
+let hr = 0;
+
+let timer = null;
+
+function start() {
+    if (timer !== null) return;
+
+    timer = setInterval(run, 100); // 100ms = 0.1 sec
+}
+
+function stop() {
+    clearInterval(timer);
+    timer = null;
+}
+
+function reset() {
+    stop();
+    ms = sec = min = hr = 0;
+
+    document.getElementById("display").innerText = "00:00:00:00";
+}
+
+function run() {
+
+    ms++;
+
+    if (ms === 10) {   // 100 x 10ms = 1 second
+        ms = 0;
+        sec++;
+    }
+
+    if (sec === 60) {
+        sec = 0;
+        min++;
+    }
+
+    if (min === 60) {
+        min = 0;
+        hr++;
+    }
+
+    let h = hr < 10 ? "0" + hr : hr;
+    let m = min < 10 ? "0" + min : min;
+    let s = sec < 10 ? "0" + sec : sec;
+    let milli = ms < 10 ? "0" + ms : ms;
+
+    document.getElementById("display").innerText =
+        h + ":" + m + ":" + s + ":" + milli;
+}
+
+</script>
+
+</body>
+</html>

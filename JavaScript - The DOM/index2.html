@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta viewport="device-width" />
+    <title>SMS</title>
+  </head>
+
+  <body>
+    <nav>Student Management System</nav>
+
+    <main>
+      <form id="submitForm">
+        <input type="text" id="name" placeholder="Enter name" />
+
+        <input type="email" id="email" placeholder="Enter email" />
+
+        <select name="" id="course">
+          <option value="">Select</option>
+          <option value="Java">Java</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+        </select>
+
+        <input type="submit" id="submitBtn" value="Add" />
+      </form>
+
+      <table border="3">
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th>email</th>
+          <th>Course</th>
+          <th colspan="2">Action</th>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+      </table>
+
+      <select id="courseFilter">
+        <option value="">All Courses</option>
+        <option value="Java">Java</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Python">Python</option>
+      </select>
+      <input type="text" id="search" placeholder="search by name" />
+    </main>
+    <footer></footer>
+  </body>
+
+  <script>
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    const form = document.getElementById("submitForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const course = document.getElementById("course");
+    const tbody = document.getElementById("tbody");
+    const search = document.getElementById("search");
+    const courseFilter = document.getElementById("courseFilter");
+    let editIndex = -1;
+
+    let nameRegex = /^[A-Za-z ]{3,}$/;
+    let emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    let passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    function renderTable(list = students) {
+      tbody.innerHTML = "";
+
+      list.forEach((student, index) => {
+        let row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${student.stdName}</td>
+                    <td>${student.stdEmail}</td>
+                    <td>${student.stdCourse}</td>
+                    <td colspan="2">
+                        <button onClick="editStd(${index})">Edit</button>
+                        <button onClick="deleteStd(${index})">Delete</button>
+                    </td>
+                   
+                </tr>
+            `;
+        tbody.innerHTML += row;
+      });
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let stdName = name.value.trim();
+      let stdEmail = email.value.trim();
+      let stdCourse = course.value;
+
+      if (!nameRegex.test(stdName) || !emailRegex.test(stdEmail)) {
+        alert("Validation failed");
+        return;
+      }
+
+      let student = {
+        stdName,
+        stdEmail,
+        stdCourse,
+      };
+
+      if (editIndex === -1) {
+        students.push(student);
+      } else {
+        students[editIndex] = student;
+        editIndex = -1;
+        submitBtn.value = "Add";
+      }
+
+      localStorage.setItem("students", JSON.stringify(students));
+      form.reset();
+      renderTable();
+    });
+
+    function deleteStd(index) {
+      students.splice(index, 1);
+      localStorage.setItem("students", JSON.stringify(students));
+      renderTable();
+    }
+
+    function editStd(index) {
+      let data = students[index];
+      name.value = data.stdName;
+      email.value = data.stdEmail;
+      course.value = data.stdCourse;
+
+      editIndex = index;
+      submitBtn.value = "Update";
+    }
+
+    function searchByName() {
+      let searchTerm = search.value.trim().toLowerCase();
+      let filtered = students.filter((s) => {
+        return s.stdName.toLowerCase().includes(searchTerm);
+      });
+      renderTable(filtered);
+    }
+
+    function filterByCourse() {
+      let selectedCourse = courseFilter.value;
+
+      // If "All Courses" selected
+      if (selectedCourse === "") {
+        renderTable();
+        return;
+      }
+
+      let filtered = students.filter((s) => {
+        return s.stdCourse === selectedCourse;
+      });
+
+      renderTable(filtered);
+    }
+
+    search.addEventListener("keyup", searchByName);
+
+    courseFilter.addEventListener("change", filterByCourse);
+
+    renderTable();
+  </script>
+</html>

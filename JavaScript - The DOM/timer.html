@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #121212;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #1f1f1f;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    h1 {
+        margin-bottom: 15px;
+    }
+
+    #display {
+        font-size: 36px;
+        margin: 15px 0;
+    }
+
+    input {
+        width: 60px;
+        padding: 6px;
+        margin: 5px;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 5px;
+        border: none;
+    }
+
+    button {
+        padding: 8px 14px;
+        margin: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .start { background: #4CAF50; color: white; }
+    .stop { background: #f44336; color: white; }
+    .reset { background: #2196F3; color: white; }
+
+    button:hover {
+        opacity: 0.85;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Countdown Timer</h1>
+
+    <div>
+        <input type="number" id="hours" placeholder="HH" min="0">
+        :
+        <input type="number" id="minutes" placeholder="MM" min="0" max="59">
+        :
+        <input type="number" id="seconds" placeholder="SS" min="0" max="59">
+    </div>
+
+    <div id="display">00:00:00</div>
+
+    <button class="start" onclick="startTimer()">Start</button>
+    <button class="stop" onclick="stopTimer()">Stop</button>
+    <button class="reset" onclick="resetTimer()">Reset</button>
+
+</div>
+
+<script>
+
+let timer = null;
+let totalSeconds = 0;
+
+function startTimer() {
+
+    if (timer !== null) return;
+
+    let h = parseInt(document.getElementById("hours").value) || 0;
+    let m = parseInt(document.getElementById("minutes").value) || 0;
+    let s = parseInt(document.getElementById("seconds").value) || 0;
+
+    totalSeconds = h * 3600 + m * 60 + s;
+
+    if (totalSeconds <= 0) {
+        alert("Please set time first!");
+        return;
+    }
+
+    updateDisplay();
+
+    timer = setInterval(() => {
+
+        totalSeconds--;
+
+        updateDisplay();
+
+        if (totalSeconds <= 0) {
+            stopTimer();
+            alert("Time's Up!");
+        }
+
+    }, 1000);
+}
+
+
+function stopTimer() {
+    clearInterval(timer);
+    timer = null;
+}
+
+
+function resetTimer() {
+
+    stopTimer();
+
+    totalSeconds = 0;
+
+    document.getElementById("display").innerText = "00:00:00";
+
+    document.getElementById("hours").value = "";
+    document.getElementById("minutes").value = "";
+    document.getElementById("seconds").value = "";
+}
+
+
+function updateDisplay() {
+
+    let h = Math.floor(totalSeconds / 3600);
+    let m = Math.floor((totalSeconds % 3600) / 60);
+    let s = totalSeconds % 60;
+
+    h = h < 10 ? "0" + h : h;
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
+
+    document.getElementById("display").innerText =
+        h + ":" + m + ":" + s;
+}
+
+</script>
+
+</body>
+</html>

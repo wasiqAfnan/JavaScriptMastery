@@ -13,7 +13,7 @@ const sendMail = async ({ to, templateName, data }) => {
     const { subject, html, text } = template(data);
 
     const mailOptions = {
-      from: `Wasiq <${process.env.AUTHORIZE_MAIL}>`,
+      from: `BiteBot <${process.env.AUTHORIZE_MAIL}>`,
       to,
       subject,
       html,
