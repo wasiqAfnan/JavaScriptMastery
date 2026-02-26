@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task & Expense Tracker</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0ecec;
+        padding: 20px;
+      }
+
+      /* Main Box */
+      .container {
+        width: 400px;
+        background: white;
+        padding: 15px;
+        margin: auto;
+        border: 1px solid #d4d2d2;
+      }
+
+      /* Heading */
+      h2 {
+        text-align: center;
+      }
+
+      /* Inputs & Select */
+      input,
+      select {
+        width: 98%;
+        padding: 6px;
+        margin-bottom: 8px;
+        margin: 5px 0;
+      }
+
+      /* Button */
+      button {
+        width: 100%;
+        padding: 6px;
+        background: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: rgb(54, 225, 54);
+      }
+
+      /* List */
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      /* List Item */
+      li {
+        background: #eee;
+        padding: 6px;
+        margin: 5px 0;
+        overflow: hidden;
+      }
+
+      /* Delete Button */
+      .delete {
+        background: rgb(240, 47, 47);
+        cursor: pointer;
+        color: white;
+        border: none;
+        padding: 3px 6px;
+        float: right;
+      }
+
+      /* Totals */
+      .totals {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Task & Expense Tracker</h2>
+
+      <input type="text" id="title" placeholder="Enter Title" />
+
+      <input type="number" id="amount" placeholder="Enter Amount" />
+
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <button onclick="addItem()">Add</button>
+
+      <br /><br />
+
+      <select id="filter" onchange="filterItems()">
+        <option value="all">All</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <ul id="list"></ul>
+
+      <div class="totals">
+        Income: RS.<span id="income">0</span><br />
+        Expense: RS.<span id="expense">0</span><br />
+        Balance: Rs.<span id="balance">0</span>
+      </div>
+    </div>
+
+    <script>
+      let items = [];
+
+      /* Load Data */
+      if(localStorage.getItem("items")) {
+        items = JSON.parse(localStorage.getItem("items"));
+        showItems(items);
+      }
+
+      /* Add Item */
+      function addItem() {
+        let title = document.getElementById("title").value;
+        let amount = document.getElementById("amount").value;
+        let type = document.getElementById("type").value;
+
+        if (title == "" || amount == "") {
+          alert("Fill all fields");
+          return;
+        }
+
+        let item = {
+          id: Date.now(),
+          title: title,
+          amount: Number(amount),
+          type: type,
+        };
+
+        items.push(item);
+
+        saveData();
+        showItems(items);
+
+        document.getElementById("title").value = "";
+        document.getElementById("amount").value = "";
+      }
+
+      /* Show Items */
+      function showItems(data) {
+        let list = document.getElementById("list");
+        list.innerHTML = "";
+
+        data.forEach(function (item) {
+          let li = document.createElement("li");
+
+          li.innerHTML =
+            item.title +
+            " - ₹" +
+            item.amount +
+            " (" +
+            item.type +
+            ")" +
+            "<button class='delete' onclick='deleteItem(" +
+            item.id +
+            ")'>X</button>";
+
+          list.appendChild(li);
+        });
+
+        calculateTotals();
+      }
+
+      /* Delete */
+      function deleteItem(id) {
+        items = items.filter(function (item) {
+          return item.id != id;
+        });
+
+        saveData();
+        showItems(items);
+      }
+
+      /* Filter */
+      function filterItems() {
+        let value = document.getElementById("filter").value;
+
+        if (value == "all") {
+          showItems(items);
+        } else {
+          let filtered = items.filter(function (item) {
+            return item.type == value;
+          });
+
+          showItems(filtered);
+        }
+      }
+
+      /* Totals */
+      function calculateTotals() {
+        let income = 0;
+        let expense = 0;
+
+        items.forEach(function (item) {
+          if (item.type == "income") {
+            income += item.amount;
+          } else {
+            expense += item.amount;
+          }
+        });
+
+        document.getElementById("income").innerText = income;
+        document.getElementById("expense").innerText = expense;
+        document.getElementById("balance").innerText = income - expense;
+      }
+
+      /* Save */
+      function saveData() {
+        localStorage.setItem("items", JSON.stringify(items));
+      }
+    </script>
+  </body>
+</html>
