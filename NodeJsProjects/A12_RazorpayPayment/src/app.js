@@ -23,6 +23,8 @@ const app = express();
  * We will handle that separately later.
  */
 
+app.use( "/api/v1/payments/webhook", express.raw({ type: "application/json" }) );
+
 app.use(express.json());
 // app.use( cors({ origin: "*", methods: ["GET", "POST"], }) );
 app.use(express.static("public"));

@@ -16,7 +16,6 @@ router.post("/verify-payment", verifyPaymentController);
 // Razorpay Webhook
 router.post(
   "/webhook",
-  express.raw({ type: "application/json" }),
   razorpayWebhookController,
 );
 
