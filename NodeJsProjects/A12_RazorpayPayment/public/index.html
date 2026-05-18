@@ -80,19 +80,19 @@
               //responseBox.innerText = JSON.stringify(response, null, 2);
 
               // send the response to backend for signature verification
-              const verifyResponse = await fetch(
-                "/api/v1/payments/verify-payment",
-                {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(response),
-                },
-              );
-              const verifyData = await verifyResponse.json();
+              // const verifyResponse = await fetch(
+              //   "/api/v1/payments/verify-payment",
+              //   {
+              //     method: "POST",
+              //     headers: { "Content-Type": "application/json" },
+              //     body: JSON.stringify(response),
+              //   },
+              // );
+              // const verifyData = await verifyResponse.json();
 
-              // Display Verification Response
-              console.log("Verification Response:", verifyData);
-              responseBox.innerText = JSON.stringify(verifyData, null, 2);
+              // // Display Verification Response
+              // console.log("Verification Response:", verifyData);
+              // responseBox.innerText = JSON.stringify(verifyData, null, 2);
             },
 
             theme: {
