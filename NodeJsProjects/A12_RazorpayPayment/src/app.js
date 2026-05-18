@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import paymentRoutes from "./routes/payment.routes.js";
 
@@ -21,7 +22,11 @@ const app = express();
  *
  * We will handle that separately later.
  */
+
 app.use(express.json());
+// app.use( cors({ origin: "*", methods: ["GET", "POST"], }) );
+app.use(express.static("public"));
+
 
 /*
     Health Check Route

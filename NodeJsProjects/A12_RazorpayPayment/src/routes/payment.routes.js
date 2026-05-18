@@ -1,26 +1,17 @@
 import express from "express";
+import { createOrderController, verifyPaymentController } from "../controllers/payment.controller.js";
 
 const router = express.Router();
 
 /*
     Create Razorpay Order
 */
-router.post("/create-order", (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: "Create order route working",
-    });
-});
+router.post("/create-order", createOrderController);
 
 /*
     Verify Payment Signature
 */
-router.post("/verify-payment", (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: "Verify payment route working",
-    });
-});
+router.post("/verify-payment", verifyPaymentController);
 
 /*
     Razorpay Webhook
