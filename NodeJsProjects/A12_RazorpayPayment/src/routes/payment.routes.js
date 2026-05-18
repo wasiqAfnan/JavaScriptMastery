@@ -1,26 +1,23 @@
 import express from "express";
-import { createOrderController, verifyPaymentController } from "../controllers/payment.controller.js";
+import {
+  createOrderController,
+  razorpayWebhookController,
+  verifyPaymentController,
+} from "../controllers/payment.controller.js";
 
 const router = express.Router();
 
-/*
-    Create Razorpay Order
-*/
+// Create Razorpay Order
 router.post("/create-order", createOrderController);
 
-/*
-    Verify Payment Signature
-*/
+// Verify Payment Signature
 router.post("/verify-payment", verifyPaymentController);
 
-/*
-    Razorpay Webhook
-*/
-router.post("/webhook", (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: "Webhook route working",
-    });
-});
+// Razorpay Webhook
+router.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  razorpayWebhookController,
+);
 
 export default router;
