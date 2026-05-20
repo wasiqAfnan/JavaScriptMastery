@@ -77,7 +77,7 @@
               // payment success response
               console.log("Payment Success:", response);
 
-              responseBox.innerText = `Payment successful\nPayment ID: ${response.payment_id}`;
+              responseBox.innerText = `Payment successful\nPayment ID: ${response.razorpay_payment_id}`;
 
               // send the response to backend for signature verification
               // const verifyResponse = await fetch(
