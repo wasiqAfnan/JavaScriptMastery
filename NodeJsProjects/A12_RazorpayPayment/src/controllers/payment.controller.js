@@ -1,5 +1,4 @@
 import { createRazorpayOrder } from "../services/payment.service.js";
-import verifyPaymentSignature from "../utils/verifySignature.js";
 import crypto from "crypto";
 
 /*
@@ -82,12 +81,20 @@ export const verifyPaymentController = async (req, res) => {
       });
     }
 
-    // verigy signature
-    const isAuthentic = verifyPaymentSignature({
-      razorpay_order_id,
-      razorpay_payment_id,
-      razorpay_signature,
-    });
+    /*
+        Generate Expected Signature
+    */
+    const generatedSignature = crypto
+        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .update(
+            `${razorpay_order_id}|${razorpay_payment_id}`
+        )
+        .digest("hex");
+
+    /*
+      Compare Signatures
+    */
+    const isAuthentic = generatedSignature === razorpay_signature;
 
     // handle invalid signature
     if (!isAuthentic) {
